@@ -9,29 +9,43 @@ using Microsoft.EntityFrameworkCore;
 using ViewModels;
 using Views;
 using Microsoft.Extensions.Logging;
+using Material.Components.Maui.Extensions;
+using SkiaSharp.Views.Maui.Controls.Hosting;
+using Microsoft.Maui.LifecycleEvents;
+
 
 public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
-		builder.UseMauiApp<App>()
-		       .ConfigureFonts(fonts =>
-		       {
-			       fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-			       fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			   });
+		builder.UseMauiApp<App>();
 		builder.UseMauiCommunityToolkit(options =>
 		{
 			options.SetShouldSuppressExceptionsInAnimations(true);
 			options.SetShouldSuppressExceptionsInBehaviors(true);
 			options.SetShouldSuppressExceptionsInConverters(true);
 		});
+
+		builder
+			.UseMaterialComponents(new List<string>
+			{
+                //generally, we needs add 6 types of font families
+                "Montserrat-Regular.ttf",
+				"Montserrat-Italic.ttf",
+				"Montserrat-Medium.ttf",
+				"Montserrat-MediumItalic.ttf",
+				"Montserrat-Bold.ttf",
+				"Montserrat-BoldItalic.ttf",
+			});
+
+		builder.UseSkiaSharp();
 		builder.Services.AddApplication();
 		builder.Services.AddInfrastructureData(GetDatabaseConnectionString("Seiri"));
 		builder.Services.AddInfrastructureBusiness();
 		builder.Services.AddSingleton<MainViewModel>();
 		builder.Services.AddSingleton<MainPage>();
+
 
 
 		var app = builder.Build();

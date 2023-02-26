@@ -1,4 +1,4 @@
-namespace Seiri.Client.Views;
+﻿namespace Seiri.Client.Views;
 
 using ViewModels;
 
@@ -9,4 +9,8 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 		BindingContext = mainViewModel;
 	}
+
+	
+
 }
+

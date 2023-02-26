@@ -1,4 +1,4 @@
-namespace Seiri.Client.ViewModels;
+﻿namespace Seiri.Client.ViewModels;
 
 using System.Collections.ObjectModel;
 using Seiri.Application.Interfaces.CQRS;
@@ -99,4 +99,8 @@ public partial class MainViewModel : ObservableObject
 			await Toast.Make(errors, ToastDuration.Long).Show(cancellationToken);
 		}
 	}
+
+
+
+
 }

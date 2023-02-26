@@ -1,42 +1,147 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Seiri.Client.Views.MainPage"
-             xmlns:viewModels="clr-namespace:Seiri.Client.ViewModels;assembly=Seiri.Client"
-             x:Name="PersonPage">
+<ContentPage
+    x:Class="Seiri.Client.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:viewModels="clr-namespace:Seiri.Client.ViewModels;assembly=Seiri.Client"
+	xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+    x:Name="PersonPage"
+    Shell.NavBarIsVisible="False"
+	>
 
-	<ScrollView>
-		<VerticalStackLayout Spacing="25" Padding="30">
+	<Grid BackgroundColor="#fafafa">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-			<Button Text="Create" Command="{Binding CreateItemCommand}" />
+		<Image Grid.Column="1" Source="login.png"  Aspect="AspectFill" />
 
-			<CollectionView ItemsSource="{Binding Items}"
-			                EmptyView="No items">
-				<CollectionView.ItemTemplate>
-					<DataTemplate>
-						<Grid ColumnDefinitions="*, 5*, *, *"
-						      RowDefinitions="40">
-							<Label Grid.Column="0"
-							       Text="{Binding Id}" />
+		<StackLayout Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10" Margin="20,20,20,20">
 
-							<Label Grid.Column="1"
-							       Text="{Binding Name}" />
+			<HorizontalStackLayout>
+				<Label  Text="Welcome To Seiri"
+					FontSize="25"
+				   HorizontalTextAlignment="Start"
+					VerticalTextAlignment="End"
+					TextColor="#333333"
+					FontAttributes="Bold"
+						/>
 
-							<Button Grid.Column="2"
-							        Text="Update"
-							        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=UpdateItemCommand}"
-							        CommandParameter="{Binding Id}" />
+				<skia:SKLottieView Grid.Row="2"
+                  Source="lizard-running.json"
+                  RepeatCount="-1"
+                  HeightRequest="100"
+                  WidthRequest="100"
+                  HorizontalOptions="Center"
+				VerticalOptions="End"
+								   />
+				
+			</HorizontalStackLayout>
+			
 
-							<Button Grid.Column="3"
-							        Text="Delete"
-							        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=DeleteItemCommand}"
-							        CommandParameter="{Binding Id}" />
-						</Grid>
-					</DataTemplate>
-				</CollectionView.ItemTemplate>
-			</CollectionView>
+			<Label  Text="Your DMS made Easier just for you"
+					FontSize="15"
+				   HorizontalTextAlignment="Start"
+					VerticalTextAlignment="Center"
+					TextColor="#757575" />
 
-		</VerticalStackLayout>
-	</ScrollView>
+			
+
+			<mdc:TextField WidthRequest="300" HeightRequest="20" Style="{DynamicResource OutlinedTextFieldStyle}"
+						   LabelText="Email"
+						   LabelTextColor ="#757575"
+						   SupportingText=""
+						   ActiveIndicatorColor="#757575"
+						   ForegroundColor="#333333"
+						   OutlineColor="#333333"
+						   CaretColor="#757575"
+						   Margin="0,30,0,0"
+						    />
+
+			<mdc:TextField WidthRequest="300" HeightRequest="20" Style="{DynamicResource OutlinedTextFieldStyle}"
+						   LabelText="Password"
+						   LabelTextColor ="#757575"
+						   SupportingText=""
+						   ActiveIndicatorColor="#757575"
+						   ForegroundColor="#333333"
+						   OutlineColor="#333333"
+						   CaretColor="#757575"
+						    />
+			<mdc:Label Text="Forgot Password?" HorizontalOptions="End" FontWeight="500" Margin="0,0,10,0" />
+
+			<mdc:Button Style="{DynamicResource FilledButtonStyle}"
+						Shape="ExtraSmall"
+						Text="Sign In"
+						WidthRequest="300"
+						HorizontalOptions="Center"
+						BackgroundColour="#333333"
+						/>
+
+			<StackLayout Orientation="Horizontal" Spacing="5" Margin="0,0,0,20" HorizontalOptions="Center">
+				<mdc:Label Text="Don't Have an Account?"  />
+				<mdc:Label Text="Sign Up for free." FontWeight="500" />
+			</StackLayout>
+
+		</StackLayout>
+		
+
+
+
+		<!--<StackLayout Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+			<Label  Text="Welcome"  FontSize="20" FontFamily="Montserrat"
+				   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+			<Label  Text="Sign In Your Account Now"  FontSize="15" FontFamily="Montserrat"
+				   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+			<mdc:TextField WidthRequest="250" HeightRequest="20" Style="{DynamicResource OutlinedTextFieldStyle}"
+						   LabelText="Email"
+						   LabelTextColor ="Black"
+						   SupportingText=""
+						   ActiveIndicatorColor="Black"
+						   OutlineColor="Black"
+						   FontSize="15"
+						    />
+
+			<mdc:TextField WidthRequest="250" Style="{DynamicResource OutlinedTextFieldStyle}"
+						   LabelText="Password"
+						   LabelTextColor ="Black"
+						   SupportingText=""
+						   ActiveIndicatorColor="Black"
+						   OutlineColor="Black"
+						   FontSize="15"
+						    />
+			<mdc:Button Style="{DynamicResource ElevatedButtonStyle}" Text="Sign In" />
+		</StackLayout>
+
+		
+			
+		
+
+		<Grid Grid.Column="1" BackgroundColor="Black">
+			<Grid.RowDefinitions >
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="2*" />
+
+			</Grid.RowDefinitions >
+
+
+			<Label Grid.Row="0" Text="Seiri" TextColor="White" FontSize="30" FontFamily="Montserrat"
+				   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+				<skia:SKLottieView Grid.Row="2"
+                  Source="lizard-running.json"
+                  RepeatCount="-1"
+                  HeightRequest="200"
+                  WidthRequest="200"
+                  HorizontalOptions="Center" />
+			
+		</Grid>-->
+
+
+	</Grid>
 </ContentPage>
