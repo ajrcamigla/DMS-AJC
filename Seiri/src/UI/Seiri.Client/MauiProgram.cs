@@ -19,7 +19,7 @@ public static class MauiProgram
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
-		builder.UseMauiApp<App>();
+		builder.UseMauiApp<App>().UsePrism(PrismStartup.Configure);
 		builder.UseMauiCommunityToolkit(options =>
 		{
 			options.SetShouldSuppressExceptionsInAnimations(true);
@@ -43,8 +43,8 @@ public static class MauiProgram
 		builder.Services.AddApplication();
 		builder.Services.AddInfrastructureData(GetDatabaseConnectionString("Seiri"));
 		builder.Services.AddInfrastructureBusiness();
-		builder.Services.AddSingleton<MainViewModel>();
-		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<LogInViewModel>();
+		builder.Services.AddSingleton<LogInPage>();
 
 
 

@@ -64,6 +64,8 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Material.Components.Maui" Version="0.1.0-beta" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Prism.DryIoc.Maui" Version="8.1.273-pre" />
+		<PackageReference Include="Prism.Maui" Version="8.1.273-pre" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 	</ItemGroup>
 	
@@ -78,5 +80,11 @@
 	  <ProjectReference Include="..\..\Application\Seiri.Application\Seiri.Application.csproj" />
 	  <ProjectReference Include="..\..\Infrastructure\Seiri.Infrastructure.Business\Seiri.Infrastructure.Business.csproj" />
 	  <ProjectReference Include="..\..\Infrastructure\Seiri.Infrustructure.Data\Seiri.Infrastructure.Data.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\LogInPage.xaml.cs">
+	    <DependentUpon>LogInPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 </Project>

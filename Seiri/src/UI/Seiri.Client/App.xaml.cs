@@ -6,14 +6,12 @@ using Application = Microsoft.Maui.Controls.Application;
 
 public partial class App : Application
 {
-	//const int WindowWidth = 900;
-	//const int WindowHeight = 600;
-
 	public App()
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
+
+	UserAppTheme = AppTheme.Light;
 
 	}
 
@@ -24,12 +22,14 @@ public partial class App : Application
 
 		var mainDisplayInfo = DeviceDisplay.Current.MainDisplayInfo;
 
-		
 		windows.Height = 700;
-		windows.Width = 1200;
+		windows.Width = 1100;
 
-		//	windows.X = (1920 / 2) - ((1920 / 2) / 2);
-		//	windows.Y = (1080 / 2) - ((1080 / 2) / 2) - 10;
+		windows.MinimumHeight = 700;
+		windows.MinimumWidth = 1100;
+
+		//windows.X = (1920 / 2) - ((1920 / 2) / 2);
+		//windows.Y = (1080 / 2) - ((1080 / 2) / 2) - 10;
 
 
 		//Center the window
