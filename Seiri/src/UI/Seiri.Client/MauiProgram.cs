@@ -1,9 +1,7 @@
 ﻿namespace Seiri.Client;
 
-using Application.Configuration;
 using Infrastructure.Data.Repositories.Models;
 using CommunityToolkit.Maui;
-using Infrastructure.Business;
 using Infrastructure.Data.Configuration;
 using Microsoft.EntityFrameworkCore;
 using ViewModels;
@@ -12,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Material.Components.Maui.Extensions;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Microsoft.Maui.LifecycleEvents;
+using Prism.Ioc;
 
 
 public static class MauiProgram
@@ -40,16 +39,16 @@ public static class MauiProgram
 			});
 
 		builder.UseSkiaSharp();
-		builder.Services.AddApplication();
-		builder.Services.AddInfrastructureData(GetDatabaseConnectionString("Seiri"));
-		builder.Services.AddInfrastructureBusiness();
+		builder.Services.AddMediatR(x =>
+		{
+			x.RegisterServicesFromAssemblies(typeof(Seiri.Application.Commands.AuthenticateUserCommand).Assembly);
+		});
 		builder.Services.AddSingleton<LogInViewModel>();
 		builder.Services.AddSingleton<LogInPage>();
 
 
 
 		var app = builder.Build();
-		MigrateDb(app.Services);
 		return app;
 	}
 
@@ -58,11 +57,5 @@ public static class MauiProgram
 		return $"Filename={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), filename)}.db";
 	}
 
-	private static void MigrateDb(IServiceProvider serviceProvider)
-	{
-		using var scope = serviceProvider.CreateScope();
-		var factory = scope.ServiceProvider.GetRequiredService<IDbContextFactory<ApplicationContext>>();
-		using var context = factory.CreateDbContext();
-		context.Database.Migrate();
-	}
+	
 }
