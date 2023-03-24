@@ -16,11 +16,11 @@ namespace Seiri.Application.Commands
 		public AuthenticationResponse Response { get; set; }
 	}
 
-	public class CreateUserDeviceCommandHandler : IRequestHandler<AuthenticateUserCommand, AuthenticateUserCommandResponse>
+	public class AuthenticateUserCommandHandler : IRequestHandler<AuthenticateUserCommand, AuthenticateUserCommandResponse>
 	{
 		private readonly IAuthenticationService authenticationService;
 
-		public CreateUserDeviceCommandHandler(IAuthenticationService authenticationService)
+		public AuthenticateUserCommandHandler(IAuthenticationService authenticationService)
 		{
 			this.authenticationService = authenticationService;
 		}

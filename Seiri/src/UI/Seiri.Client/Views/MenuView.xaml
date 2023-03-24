@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Seiri.Client.Views.MenuView"
+			 xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+			 WidthRequest="100" >
+	<VerticalStackLayout Margin="0,30">
+		<VerticalStackLayout HeightRequest="80">
+			<mdc:IconButton Icon="Home"
+							Style="{DynamicResource StandardIconButtonStyle}"
+							Command="{Binding NavigateToHomePageCommand}" />
+			<Label Text="Home" HorizontalTextAlignment="Center" />
+		</VerticalStackLayout>
+		<VerticalStackLayout HeightRequest="80">
+			<mdc:IconButton Icon="FileDocument"
+							Style="{DynamicResource StandardIconButtonStyle}"
+							Command="{Binding NavigateToDocumentPageCommand}"/>
+			<Label Text="Document" HorizontalTextAlignment="Center" />
+		</VerticalStackLayout>
+	</VerticalStackLayout>
+</ContentView>

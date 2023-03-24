@@ -7,19 +7,17 @@
 	xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:viewModels="clr-namespace:Seiri.Client.ViewModels;assembly=Seiri.Client"
 	xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
-    x:Name="PersonPage"
-    Shell.NavBarIsVisible="False"
+    x:Name="LogIn"
+	NavigationPage.HasNavigationBar="False"
 	>
+	<!--Shell.NavBarIsVisible="False"
+	Shell.FlyoutBehavior="Disabled"-->
 
 	<Grid BackgroundColor="#fafafa">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
-		
-
-		
 
 		<Grid Grid.Column="0">
 			
@@ -60,11 +58,12 @@
 
 				<!--WidthRequest="300"-->
 
-				<mdc:TextField  HeightRequest="20" Style="{DynamicResource OutlinedTextFieldStyle}"
+				<mdc:TextField   Style="{DynamicResource OutlinedTextFieldStyle}"
 						   Text="{Binding Email, Mode=TwoWay}"
 						   LabelText="Email"
 						   LabelTextColor ="#757575"
-						   SupportingText=""
+						   SupportingText="{Binding EmailValidationText, Mode=OneWay}"
+						   SupportingTextColor="red"
 						   ActiveIndicatorColor="#757575"
 						   ForegroundColor="#333333"	
 						   OutlineColor="#333333"
@@ -72,15 +71,17 @@
 						   Margin="0,30,0,0"
 						    />
 
-			<mdc:TextField  HeightRequest="20" Style="{DynamicResource OutlinedTextFieldStyle}"
+			<mdc:TextField  Style="{DynamicResource OutlinedTextFieldStyle}"
 						   Text="{Binding Password, Mode=TwoWay}"
 						   LabelText="Password"
 						   LabelTextColor ="#757575"
-						   SupportingText=""
+						   SupportingText="{Binding PasswordValidationText, Mode=OneWay}"
+							SupportingTextColor="red"
 						   ActiveIndicatorColor="#757575"
 						   ForegroundColor="#333333"
 						   OutlineColor="#333333"
 						   CaretColor="#757575"
+							FontFamily="password"
 						    />
 			<mdc:Label Text="Forgot Password?" HorizontalOptions="End" FontWeight="500" Margin="0,0,10,0" />
 

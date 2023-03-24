@@ -26,6 +26,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -52,6 +53,7 @@
 	  <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
 	  <None Remove="Resources\Fonts\Montserrat-MediumItalic.ttf" />
 	  <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+	  <None Remove="Resources\Fonts\password.ttf" />
 	  <None Remove="Resources\Images\login.png" />
 	  <None Remove="Resources\Raw\lizard-running.json" />
 	  <None Remove="Resources\Raw\paper-plane-1.json" />
@@ -62,11 +64,10 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+		<PackageReference Include="FluentValidation" Version="11.5.1" />
 		<PackageReference Include="Material.Components.Maui" Version="0.1.0-beta" />
 		<PackageReference Include="MediatR" Version="12.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="Prism.DryIoc.Maui" Version="8.1.273-pre" />
-		<PackageReference Include="Prism.Maui" Version="8.1.273-pre" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 	</ItemGroup>
 	
@@ -76,16 +77,38 @@
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.4" />
 		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.4" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Prism\src\Prism.DryIoc.Maui\Prism.DryIoc.Maui.csproj" />
+	  <ProjectReference Include="..\..\..\Prism\src\Prism.Maui.Rx\Prism.Maui.Rx.csproj" />
+	  <ProjectReference Include="..\..\..\Prism\src\Prism.Maui\Prism.Maui.csproj" />
 	  <ProjectReference Include="..\..\..\Seiri.Application\Seiri.Application.csproj" />
 	  <ProjectReference Include="..\..\..\Seiri.Infrastructure\Seiri.Infrastructure.csproj" />
-	  <ProjectReference Include="..\..\Infrastructure\Seiri.Infrustructure.Data\Seiri.Infrastructure.Data.csproj" />
 	</ItemGroup>
+
 
 	<ItemGroup>
 	  <Compile Update="Views\LogInPage.xaml.cs">
 	    <DependentUpon>LogInPage.xaml</DependentUpon>
 	  </Compile>
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\DocumentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\FullDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MenuView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ShellPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SplashPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 </Project>

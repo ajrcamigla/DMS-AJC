@@ -11,6 +11,5 @@ namespace Seiri.Domain.Interfaces
     {
 		Task<AuthenticationResponse> SignIn(string username, string password);
 
-
     }
 }
